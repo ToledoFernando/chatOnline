@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "clear && node --watch index.js"
+    "start": "clear || cls && node --watch index.js"
   },
   "keywords": [],
   "author": "",
