@@ -1,22 +1,12 @@
-const express = require("express");
-const { createServer } = require("http");
+const { serverHttp, port } = require('./app');
+const { conn } = require('./db/connection');
 require("dotenv").config();
-const { Server } = require("socket.io");
+require('./socket/socket');
 
-const port = process.env.PORT || 4000;
-
-const app = express();
-
-const serverHttp = createServer(app);
-
-const io = new Server(serverHttp, {
-  cors: {
-    header: "*",
-  },
+serverHttp.listen(port, async () => {
+  await conn.sync({ force: true })
+  console.log(`-------------------
+DB is connected
+Server on Port ${port}
+-------------------`)
 });
-
-io.on("connection", (socket) => {
-  console.log(`User is connected, ID is ${socket.id}`);
-});
-
-serverHttp.listen(port, () => console.log(`Server on Port ${port}`));
