@@ -7,10 +7,9 @@ const port = process.env.PORT || 4000;
 
 const app = express();
 
-app.use(express.json())
-app.use(require('./routes/routes'));
+app.use(express.json());
+app.use(require("./routes/routes"));
 
 const serverHttp = createServer(app);
-
 
 module.exports = { serverHttp, port };
