@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "clear || cls && node --watch index.js"
+    "start": "clear || cls && nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -20,5 +20,8 @@
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.28.0",
     "socket.io": "^4.5.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }

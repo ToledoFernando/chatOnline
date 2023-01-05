@@ -15,7 +15,11 @@ function NavBar() {
         {isLogin ? (
           <>
             <li>
-              <Link to={`miacount/${dataUser.id}`}>Mi cuenta</Link>
+              <Link to={`miacount/${dataUser.id}`}>
+                {dataUser.username}
+                <img src={dataUser.profileIMG} width="20" height="20" />
+              </Link>
+              <button>Cerrar Session</button>
             </li>
           </>
         ) : (

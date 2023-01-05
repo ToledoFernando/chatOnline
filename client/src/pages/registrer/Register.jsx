@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getUser } from "../../redux/action";
+import { useNavigate } from "react-router-dom";
 import "./Register.scss";
 
 const initial = {
@@ -13,7 +14,7 @@ const initial = {
 
 function Register() {
   const [datas, setDatas] = useState(initial);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -24,6 +25,7 @@ function Register() {
     e.preventDefault();
     await dispatch(getUser(datas));
     setDatas(initial);
+    navigate("/");
   };
 
   return (

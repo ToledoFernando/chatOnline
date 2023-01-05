@@ -8,12 +8,11 @@ const initialState = {
 export function rootReducer(state = initialState, action) {
   switch (action.type) {
     case GETUSER:
-      console.log(action.payload);
-      //      localStorage.setItem("usetToken", action.payload.token);
+      localStorage.setItem("userToken", action.payload.token);
       return {
         ...state,
         isLogin: true,
-        //        userData: action.payload.newUser[0],
+        userData: action.payload.newUser,
       };
     default:
       return { ...state };
