@@ -36,7 +36,8 @@ const userLogin = async (req, res) => {
       attributes: { exclude: ["password"] },
     });
     if (!User) throw Error("Usuario no Existe");
-    res.json(User);
+    const token = newToken(req.body);
+    res.json({ User, token });
   } catch (error) {
     res.status(400).json({ Error: error.message });
   }
