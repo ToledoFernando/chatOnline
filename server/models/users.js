@@ -1,19 +1,19 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 
 const user = (database) => {
-  database.define('user', {
+  database.define("user", {
     id: {
       type: DataTypes.STRING,
       defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
+      primaryKey: true,
     },
     first_name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     last_name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     username: {
       type: DataTypes.STRING,
@@ -23,20 +23,21 @@ const user = (database) => {
       type: DataTypes.STRING,
     },
     password: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     profileIMG: {
       type: DataTypes.TEXT,
-      defaultValue: 'none'
+      defaultValue: "none",
     },
     profileID: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      defaultValue: "none",
     },
     verify: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false
-    }
-  })
-}
+      defaultValue: false,
+    },
+  });
+};
 
 module.exports = user;

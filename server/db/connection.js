@@ -1,11 +1,7 @@
-require('dotenv').config();
-const { Sequelize } = require('sequelize');
-const user = require('../models/users');
-const { HOST_DB,
-  NAME_DB,
-  USER_DB,
-  PASS_DB,
-  PORT_DB } = process.env;
+require("dotenv").config();
+const { Sequelize } = require("sequelize");
+const user = require("../models/users");
+const { HOST_DB, NAME_DB, USER_DB, PASS_DB, PORT_DB } = process.env;
 
 const conn = new Sequelize({
   database: NAME_DB,
