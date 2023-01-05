@@ -7,7 +7,7 @@ const route = Router();
 
 route.post('/register', newUser);
 
-route.get('/login/:email/:password', validatToken, userLogin);
+route.get('/login/:email/:password', userLogin);
 
 route.put('/verify', validatToken, verifyAcoutn);
 

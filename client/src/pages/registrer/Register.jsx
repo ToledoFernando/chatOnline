@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { getUser } from "../../redux/action";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../../redux/action";
+import { useNavigate, Link } from "react-router-dom";
 import "./Register.scss";
+import { useEffect } from "react";
 
 const initial = {
   first_name: "",
@@ -13,8 +15,9 @@ const initial = {
 
 function Register() {
   const [datas, setDatas] = useState(initial);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isLogin = useSelector((state) => state.isLogin);
 
   const handleChange = (e) => {
     setDatas({ ...datas, [e.target.name]: e.target.value });
@@ -22,9 +25,14 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(getUser(datas));
+    await dispatch(registerUser(datas));
     setDatas(initial);
+    navigate("/");
   };
+
+  useEffect(() => {
+    if (isLogin) return navigate("/");
+  }, []);
 
   return (
     <div>
@@ -71,6 +79,9 @@ function Register() {
           placeholder="Password"
         />
         <button>Registrarse</button>
+        <p>
+          Ya tienes cuenta? <Link to="/login">Inicia sesion</Link>
+        </p>
       </form>
     </div>
   );

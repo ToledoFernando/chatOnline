@@ -21,7 +21,6 @@ const newUser = async (req, res) => {
     newUser[0].password = "000000000000000000";
     if (!newUser[1]) throw Error("Username ya existe");
     const token = newToken(req.body);
-    console.log(newUser[0]);
     //sendMail({ newUser: newUser[0], token })
     res.json({ newUser: newUser[0], token });
   } catch (error) {
@@ -37,7 +36,8 @@ const userLogin = async (req, res) => {
       attributes: { exclude: ["password"] },
     });
     if (!User) throw Error("Usuario no Existe");
-    res.json(User);
+    const token = newToken(req.body);
+    res.json({ User, token });
   } catch (error) {
     res.status(400).json({ Error: error.message });
   }
