@@ -1,8 +1,9 @@
-import { REGISTERUSER, LOGOUT, LOGIN, GETVERIFY } from "./action";
+import { REGISTERUSER, LOGOUT, LOGIN, GETVERIFY, SEARCH, SOCKET } from "./action";
 
 const initialState = {
   isLogin: false,
   userData: {},
+  socket: {}
 };
 
 export function rootReducer(state = initialState, action) {
@@ -16,7 +17,7 @@ export function rootReducer(state = initialState, action) {
       };
 
     case LOGOUT:
-      localStorage.clear();
+      localStorage.removeItem('userToken');
       return {
         ...state,
         isLogin: false,
@@ -35,6 +36,17 @@ export function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+
+    case SEARCH:
+      return {
+        ...state
+      }
+    case SOCKET:
+      action.payload.emit('userConnected', { id: state.userData.id, username: state.userData.username })
+      return {
+        ...state,
+        socket: action.payload
+      }
     default:
       return { ...state };
   }

@@ -1,6 +1,7 @@
 const { user } = require("../db/connection");
 const newToken = require("../jwt/newToken");
 const sendMail = require("./sendEmail");
+const { Op } = require('sequelize')
 
 const newUser = async (req, res) => {
   try {
@@ -58,11 +59,21 @@ const verifyAcoutn = async (req, res) => {
   }
 };
 
-const searchUser = (req, res) => {
+const searchUser = async (req, res) => {
   try {
+    const { username } = req.params
+    const result = await user.findAll({
+      where: {
+        username: {
+          [Op.like]: `${username}%`
+        }
+      },
+      attributes: { exclude: ["password", "createdAt", "updatedAt", "profileID", "email", "verify"] },
+    })
+    res.json(result)
   } catch (error) {
     res.status(400).json({ Error: error.message });
   }
 };
 
-module.exports = { newUser, userLogin, verifyAcoutn };
+module.exports = { newUser, userLogin, verifyAcoutn, searchUser };

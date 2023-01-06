@@ -11,6 +11,7 @@ function NavBar() {
 
   const logout = () => {
     dispatch(logoutUser());
+    window.location.reload();
     navigate("/");
   };
 
@@ -23,7 +24,7 @@ function NavBar() {
         {isLogin ? (
           <>
             <li>
-              <Link to="chat">Chats</Link>
+              <Link to="chats">Chats</Link>
             </li>
             <li>
               <Link to={`miacount/${dataUser.id}`}>
