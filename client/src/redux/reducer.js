@@ -7,7 +7,6 @@ const initialState = {
 
 export function rootReducer(state = initialState, action) {
   switch (action.type) {
-
     case REGISTERUSER:
       localStorage.setItem("userToken", action.payload.token);
       return {
@@ -17,20 +16,20 @@ export function rootReducer(state = initialState, action) {
       };
 
     case LOGOUT:
-      localStorage.clear()
+      localStorage.clear();
       return {
         ...state,
         isLogin: false,
-        userData: {}
-      }
+        userData: {},
+      };
 
     case LOGIN:
-      localStorage.setItem('userToken', action.payload.token);
+      localStorage.setItem("userToken", action.payload.token);
       return {
         ...state,
         isLogin: true,
-        userData: action.payload.User
-      }
+        userData: action.payload.User,
+      };
     default:
       return { ...state };
   }
