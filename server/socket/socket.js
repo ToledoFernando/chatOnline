@@ -8,9 +8,18 @@ const io = new Server(serverHttp, {
   },
 });
 
-io.on("connection", (socket) => {
-  console.log(`User is connected, ID is ${socket.id}`);
-});
+let usersOnline = [];
 
+io.on("connection", (socket) => {
+  socket.on('userConnected', (data) => {
+    usersOnline.push({ socketID: socket.id, user: data })
+  })
+
+  socket.on('msgUser', (data) => console.log(data))
+
+  socket.on('disconnect', () => {
+    usersOnline = usersOnline.filter((usuario) => usuario.socketID !== socket.id)
+  })
+});
 
 module.exports = io; 
