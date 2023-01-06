@@ -1,18 +1,25 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import sinFoto from "../../img/sinFoto.png";
 import "./Cuenta.scss";
+import { getVerifyAcoutn } from "../../redux/action";
 
 function Cuenta() {
   const user = useSelector((state) => state.userData);
   const isLogin = useSelector((state) => state.isLogin);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const verifiAcount = () => {
+    const token = localStorage.getItem("userToken");
+    dispatch(getVerifyAcoutn(user, token));
+  };
 
   useEffect(() => {
     if (!isLogin) navigate("/");
   }, []);
-  console.log(user);
+
   return (
     <div className="myCuenta">
       <h1>Bienvenido {user.username}</h1>
@@ -36,7 +43,16 @@ function Cuenta() {
       <p>{user.email}</p>
       <label>Estado de la cuenta</label>
       <p>
-        <b>{user.verify ? "Verificado" : "No verificado"}</b>
+        <b>
+          {user.verify ? (
+            <p className="verificado">Verificado</p>
+          ) : (
+            <>
+              <label className="noVerificado">No verificado</label>
+              <button onClick={verifiAcount}>Verificar Cuenta</button>
+            </>
+          )}{" "}
+        </b>
       </p>
     </div>
   );
