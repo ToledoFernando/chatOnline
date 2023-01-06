@@ -1,10 +1,11 @@
 # chatOnline
 
-## para correr los servidores:
+## Para correr los servidores:
 
 > Front-End
-* npm run dev
+
+- npm run dev
 
 > Back-End
-* npm start
 
+- npm start

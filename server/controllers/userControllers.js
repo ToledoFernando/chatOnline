@@ -58,4 +58,11 @@ const verifyAcoutn = async (req, res) => {
   }
 };
 
+const searchUser = (req, res) => {
+  try {
+  } catch (error) {
+    res.status(400).json({ Error: error.message });
+  }
+};
+
 module.exports = { newUser, userLogin, verifyAcoutn };

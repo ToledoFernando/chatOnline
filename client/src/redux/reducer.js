@@ -1,4 +1,4 @@
-import { REGISTERUSER, LOGOUT, LOGIN } from "./action";
+import { REGISTERUSER, LOGOUT, LOGIN, GETVERIFY } from "./action";
 
 const initialState = {
   isLogin: false,
@@ -29,6 +29,11 @@ export function rootReducer(state = initialState, action) {
         ...state,
         isLogin: true,
         userData: action.payload.User,
+      };
+
+    case GETVERIFY:
+      return {
+        ...state,
       };
     default:
       return { ...state };
